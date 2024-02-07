@@ -6,8 +6,10 @@ const TodoCard = () => {
       <p>Time</p>
       <p>Description</p>
       <div className="flex gap-5 items-center">
-        <button>Edit</button>
-        <button>Delete</button>
+        <button className="bg-blue-400 text-white px-2 rounded-md">Edit</button>
+        <button className="bg-red-400 text-white px-2 rounded-md">
+          Delete
+        </button>
       </div>
     </div>
   );
