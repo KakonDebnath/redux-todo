@@ -2,9 +2,12 @@ import { useAppSelector } from '@/redux/hook';
 import AddTodoModal from './AddTodoModal';
 import TodoCard from './TodoCard';
 import TodoFilter from './TodoFilter';
+import { useGetTodosQuery } from '@/redux/api/api';
 
 const TodoContainer = () => {
   const { todos } = useAppSelector((state) => state.todos);
+  const { data, isLoading, error } = useGetTodosQuery(undefined);
+  
   return (
     <div>
       <div className="flex justify-between items-center py-3">
@@ -16,7 +19,7 @@ const TodoContainer = () => {
           {!todos.length && (
             <div>
               <h1 className="bg-white py-10 rounded-xl text-2xl font-bold text-center">
-                Their are no task pending
+                There are no task pending
               </h1>
             </div>
           )}
