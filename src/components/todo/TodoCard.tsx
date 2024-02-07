@@ -1,33 +1,36 @@
 import { useAppDispatch } from '@/redux/hook';
 import { Button } from '../ui/button';
-import { deleteTodo } from '@/redux/features/todoSlice';
+import { deleteTodo, toggleCompleteTodo } from '@/redux/features/todoSlice';
 
 type TTodoCardProps = {
   id: string;
   title: string;
   description: string;
-  isCompleted: boolean;
+  isCompleted?: boolean;
 };
 
 const TodoCard = ({ id, title, description, isCompleted }: TTodoCardProps) => {
   const dispatch = useAppDispatch();
 
-  const handleComplete = () => {};
+  const handleCompleteToggle = () => {
+    dispatch(toggleCompleteTodo(id));
+  };
 
   return (
     <div className="border  rounded-md flex items-center justify-between p-3">
       <input
-        onChange={handleComplete}
+        onChange={handleCompleteToggle}
         type="checkbox"
         name="complete"
         id="complete"
+        className="cursor-pointer p-1"
       />
       <p className="font-semibold">{title}</p>
       <div>
         {isCompleted ? (
-          <p className="bg-green-500 text-black px-2 py-1 rounded-lg">Done</p>
+          <p className="bg-green-500 text-white px-2 py-1 rounded-lg">Done</p>
         ) : (
-          <p className="bg-yellow-500 text-black px-2 py-1 rounded-lg">
+          <p className="bg-yellow-500 text-white px-2 py-1 rounded-lg">
             Pending
           </p>
         )}

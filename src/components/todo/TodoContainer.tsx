@@ -13,16 +13,15 @@ const TodoContainer = () => {
       </div>
       <div className=" bg-primary-gradient w-full rounded-xl p-1">
         <div className="flex flex-col gap-1 bg-white rounded-lg p-2">
-          {/* <div>
-          <h1 className="bg-white py-10 rounded-xl text-2xl font-bold text-center">
-            Their are no task pending
-          </h1>
-        </div> */}
+          {!todos.length && (
+            <div>
+              <h1 className="bg-white py-10 rounded-xl text-2xl font-bold text-center">
+                Their are no task pending
+              </h1>
+            </div>
+          )}
           {todos.map((task) => (
-            <TodoCard
-              key={task.id}
-              {...task}
-            />
+            <TodoCard key={task.id} {...task} />
           ))}
         </div>
       </div>
