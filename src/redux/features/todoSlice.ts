@@ -4,7 +4,7 @@ type TTodo = {
   id: string;
   title: string;
   description: string;
-  isCompleted?: boolean;
+  isCompleted: boolean;
   priority: string;
 };
 
@@ -21,7 +21,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<TTodo>) => {
-      state.todos.push({ ...action.payload, isCompleted: false });
+      state.todos.push({ ...action.payload});
     },
 
     deleteTodo: (state, action: PayloadAction<string>) => {

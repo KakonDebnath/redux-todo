@@ -5,9 +5,11 @@ import TodoFilter from './TodoFilter';
 import { useGetTodosQuery } from '@/redux/api/api';
 
 const TodoContainer = () => {
-  const { todos } = useAppSelector((state) => state.todos);
-  const { data, isLoading, error } = useGetTodosQuery(undefined);
+  // for local state
+  // const { todos } = useAppSelector((state) => state.todos);
 
+  // for remote state
+  const { data, isLoading, error } = useGetTodosQuery(undefined);
   return (
     <div>
       <div className="flex justify-between items-center py-3">
@@ -16,14 +18,14 @@ const TodoContainer = () => {
       </div>
       <div className=" bg-primary-gradient w-full rounded-xl p-1">
         <div className="flex flex-col gap-1 bg-white rounded-lg p-2">
-          {!todos.length && (
+          {!data?.data.length && (
             <div>
               <h1 className="bg-white py-10 rounded-xl text-2xl font-bold text-center">
                 There are no task pending
               </h1>
             </div>
           )}
-          {todos.map((task) => (
+          {data?.data?.map((task) => (
             <TodoCard key={task.id} {...task} />
           ))}
 
