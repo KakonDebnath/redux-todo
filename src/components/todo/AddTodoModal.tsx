@@ -14,10 +14,20 @@ import { Input } from '../ui/input';
 import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '@/redux/hook';
 import { addTodo } from '@/redux/features/todoSlice';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
 
 const AddTodoModal = () => {
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('');
 
   const dispatch = useAppDispatch();
 
@@ -29,6 +39,7 @@ const AddTodoModal = () => {
       id: randomId,
       title: task,
       description,
+      priority,
     };
 
     dispatch(addTodo(taskDetails));
@@ -66,6 +77,23 @@ const AddTodoModal = () => {
               id="description"
               className="col-span-3"
             />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="priority" className="text-right">
+              Priority
+            </Label>
+            <Select onValueChange={(value) => setPriority(value)}>
+              <SelectTrigger className="col-span-3">
+                <SelectValue placeholder="Priority" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="low">Low</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
           <DialogFooter>
             <DialogClose asChild>

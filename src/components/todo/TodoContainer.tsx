@@ -7,7 +7,7 @@ import { useGetTodosQuery } from '@/redux/api/api';
 const TodoContainer = () => {
   const { todos } = useAppSelector((state) => state.todos);
   const { data, isLoading, error } = useGetTodosQuery(undefined);
-  
+
   return (
     <div>
       <div className="flex justify-between items-center py-3">
@@ -26,6 +26,24 @@ const TodoContainer = () => {
           {todos.map((task) => (
             <TodoCard key={task.id} {...task} />
           ))}
+
+          {/* for remote data */}
+          {/* {!data.length && (
+            <div>
+              <h1 className="bg-white py-10 rounded-xl text-2xl font-bold text-center">
+                There are no task pending
+              </h1>
+            </div>
+          )}
+          {data?.map((task) => (
+            <TodoCard
+              key={task.id}
+              id="task.id"
+              title={task.title}
+              isCompleted={task.completed}
+              description=""
+            />
+          ))} */}
         </div>
       </div>
     </div>
