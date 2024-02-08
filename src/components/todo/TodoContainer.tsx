@@ -28,9 +28,17 @@ const TodoContainer = () => {
               </h1>
             </div>
           )}
-          {data?.data?.map((task: TTodo) => (
-            <TodoCard key={task.id} {...task} />
-          ))}
+          {data?.data?.map(
+            (task: {
+              _id: string;
+              title: string;
+              description: string;
+              isCompleted: boolean;
+              priority: string;
+            }) => (
+              <TodoCard key={task._id} {...task} />
+            )
+          )}
 
           {/* for remote data */}
           {/* {!data.length && (

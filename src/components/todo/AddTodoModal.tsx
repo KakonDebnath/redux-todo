@@ -36,7 +36,6 @@ const AddTodoModal = () => {
   //for server state
   const [addTodo, { data, isLoading, isSuccess, isError }] =
     useAddTodoMutation();
-  console.log({ data, isLoading, isSuccess, isError });
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // const randomId = Math.random().toString(36).substring(2);
