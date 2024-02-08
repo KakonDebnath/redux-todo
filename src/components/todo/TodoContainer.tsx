@@ -4,6 +4,7 @@ import TodoCard from './TodoCard';
 import TodoFilter from './TodoFilter';
 import { useGetTodosQuery } from '@/redux/api/api';
 import { useState } from 'react';
+import { TTodo } from '@/redux/features/todoSlice';
 
 const TodoContainer = () => {
   const [priority, setPriority] = useState('');
@@ -27,7 +28,7 @@ const TodoContainer = () => {
               </h1>
             </div>
           )}
-          {data?.data?.map((task) => (
+          {data?.data?.map((task: TTodo) => (
             <TodoCard key={task.id} {...task} />
           ))}
 

@@ -10,8 +10,13 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
-const TodoFilter = ({ priority, setPriority }) => {
-    return (
+type TTodoFilterProps = {
+  priority: string;
+  setPriority: ((value: string) => void) | undefined;
+};
+
+const TodoFilter = ({ priority, setPriority }: TTodoFilterProps) => {
+  return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button className="bg-primary-gradient"> Filter</Button>

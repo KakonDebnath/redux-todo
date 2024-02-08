@@ -8,12 +8,23 @@ export const baseApi = createApi({
   tagTypes: ['todo'],
   endpoints: (builder) => ({
     getTodos: builder.query({
-      query: (priority) => ({
-        // url: `/tasks?priority=${priority}`,
-        url: `/tasks`,
-        method: 'GET',
-        params: { priority },
-      }),
+      query: (priority) => {
+        const params = new URLSearchParams();
+
+        if (priority) {
+          params.append('priority', priority);
+        }
+
+        return {
+          // fokira style
+          // url: `/tasks?priority=${priority}`,
+          url: `/tasks`,
+          method: 'GET',
+          // another fokira style
+          // params: { priority },
+          params: params,
+        };
+      },
       providesTags: ['todo'],
     }),
     addTodo: builder.mutation({
