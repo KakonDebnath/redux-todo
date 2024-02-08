@@ -72,16 +72,16 @@ const TodoCard = ({
     toggleCompleteTodo(updateOption);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleUpdate = (e: React.FormEvent) => {
     e.preventDefault();
     // const randomId = Math.random().toString(36).substring(2);
 
     const updateOption = {
       id: _id,
       updateData: {
-        title: updateTitle,
-        description: updateDescription,
-        priority: updatePriority,
+        title: updateTitle || title,
+        description: updateDescription || description,
+        priority: updatePriority || priority,
         isCompleted: isCompleted,
       },
     };
@@ -148,7 +148,7 @@ const TodoCard = ({
                   Edit your task that yor want to finish.
                 </DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+              <form onSubmit={handleUpdate} className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="task" className="text-right">
                     Task
