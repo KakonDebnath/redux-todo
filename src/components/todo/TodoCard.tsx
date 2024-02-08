@@ -1,7 +1,10 @@
 import { useAppDispatch } from '@/redux/hook';
 import { Button } from '../ui/button';
 import { deleteTodo, toggleCompleteTodo } from '@/redux/features/todoSlice';
-import { useDeleteTodoMutation } from '@/redux/api/api';
+import {
+  useDeleteTodoMutation,
+  useToggleCompleteTodoMutation,
+} from '@/redux/api/api';
 
 type TTodoCardProps = {
   _id: string;
@@ -23,8 +26,22 @@ const TodoCard = ({
   const [deleteTodo, { data, isLoading, isError, isSuccess }] =
     useDeleteTodoMutation();
 
+  const [toggleCompleteTodo] = useToggleCompleteTodoMutation();
+
   const handleCompleteToggle = () => {
-    dispatch(toggleCompleteTodo(_id));
+    // for local state
+    // dispatch(toggleCompleteTodo(_id));
+
+    const updateOption = {
+      id: _id,
+      updateData: {
+        title,
+        description,
+        priority,
+        isCompleted: !isCompleted,
+      },
+    };
+    toggleCompleteTodo(updateOption);
   };
 
   return (
@@ -35,6 +52,7 @@ const TodoCard = ({
         name="complete"
         id="complete"
         className="cursor-pointer p-1 mr-5"
+        defaultChecked={isCompleted}
       />
       <p className="font-semibold flex-1">{title}</p>
       <div className="w-20 mr-5 text-center">
